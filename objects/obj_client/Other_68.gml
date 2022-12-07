@@ -1,0 +1,83 @@
+/// @description Insert description here
+// You can write your code in this editor
+
+
+if async_load[? "type"] == network_type_data{ // data received
+	
+	global.connectedANDreceiving = true
+	
+	var packet = async_load[? "buffer"];
+	var bufferpacket = buffer_read(packet, buffer_string)
+	// show_debug_message(bufferpacket)
+	
+	var struct = json_parse(bufferpacket)
+	show_debug_message(struct)
+	show_debug_message(typeof(struct))
+
+	
+	var playersarray = struct.state.players
+	
+	for(var i = 0; array_length(playersarray) > i; i++){ // FOR EACH PLAYER
+		
+		var playerid = struct.state.players[@ i].id
+		var playerx = struct.state.players[@ i].position.x
+		var playery = struct.state.players[@ i].position.y
+		var playerangle = struct.state.players[@ i].aimAngle
+		show_debug_message(playerangle)
+		
+		if(ds_map_exists(ds_players, playerid)){
+				var obj = ds_players[? playerid]
+				obj.x = lerp(playerx, x, 0.10)
+				obj.y = lerp(playery, y, 0.10)
+				obj.image_angle = playerangle * - (180 / pi)
+			}else{			
+				var obj = instance_create_depth(playerx,playery,0,obj_player)
+				ds_map_add(ds_players, playerid, obj)
+			}
+	}
+	
+	var bulletsarray = struct.state.bullets
+	
+	if array_length(bulletsarray) != 0{
+	
+		for(var i = 0; array_length(bulletsarray) > i; i++){ // FOR EACH BULLET
+		
+			var bulletid = struct.state.bullets[@ i].id
+			var bulletx = struct.state.bullets[@ i].position.x
+			var bullety = struct.state.bullets[@ i].position.y
+		
+			if(ds_map_exists(ds_bullets, bulletid)){
+				var obj = ds_bullets[? bulletid]
+				obj.x = bulletx//lerp(bulletx, x, 0.10)
+				obj.y = bullety//lerp(bullety, y, 0.10)
+			}else{
+				var obj = instance_create_depth(bulletx,bullety,0,obj_bullet)
+				obj.idd = bulletid
+				ds_map_add(ds_bullets, bulletid, obj)
+			}
+		}
+	}
+	
+	// check if ds map bullet is not in the data
+	for (var k = ds_map_find_first(ds_bullets); !is_undefined(k); k = ds_map_find_next(ds_bullets, k)) {
+	  var v = ds_bullets[? k];
+	  var delete_it = true
+	  /* Use k, v here */
+		for(var i = 0; array_length(bulletsarray) > i; i++){
+			var bulletid = struct.state.bullets[@ i].id
+			if k == bulletid delete_it = false
+		}
+	if delete_it{
+		with(obj_bullet){
+			if idd == k instance_destroy(self)	
+		}
+		ds_map_delete(ds_bullets,k)	
+	}
+	}
+	
+
+	
+
+		
+}
+
