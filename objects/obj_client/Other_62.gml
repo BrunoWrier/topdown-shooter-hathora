@@ -11,3 +11,10 @@ if async_load[? "id"] == get_token{
 
 }
 
+if async_load[? "id"] == create_id{
+	show_debug_message("got id= " + async_load[? "result"])
+	var idsctruct = json_parse(async_load[? "result"])
+	roomId = idsctruct[$"stateId"]
+	show_debug_message(roomId)
+	tryConnectroom = true
+}

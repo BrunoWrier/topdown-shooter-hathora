@@ -8,12 +8,10 @@ if async_load[? "type"] == network_type_data{ // data received
 	
 	var packet = async_load[? "buffer"];
 	var bufferpacket = buffer_read(packet, buffer_string)
-	// show_debug_message(bufferpacket)
 	
 	var struct = json_parse(bufferpacket)
-	show_debug_message(struct)
-	show_debug_message(typeof(struct))
 
+	#region players
 	
 	var playersarray = struct.state.players
 	
@@ -23,18 +21,38 @@ if async_load[? "type"] == network_type_data{ // data received
 		var playerx = struct.state.players[@ i].position.x
 		var playery = struct.state.players[@ i].position.y
 		var playerangle = struct.state.players[@ i].aimAngle
-		show_debug_message(playerangle)
 		
 		if(ds_map_exists(ds_players, playerid)){
 				var obj = ds_players[? playerid]
-				obj.x = lerp(playerx, x, 0.10)
-				obj.y = lerp(playery, y, 0.10)
-				obj.image_angle = playerangle * - (180 / pi)
+				obj.xx = playerx//lerp(x, playerx, .80)
+				obj.yy = playery//lerp(y, playery, .80)
+				obj.anglee = playerangle * - (180 / pi)
+				obj.idd = playerid
 			}else{			
 				var obj = instance_create_depth(playerx,playery,0,obj_player)
 				ds_map_add(ds_players, playerid, obj)
 			}
 	}
+	// check if ds map player is not in the data
+	for (var k = ds_map_find_first(ds_players); !is_undefined(k); k = ds_map_find_next(ds_players, k)) {
+	  var v = ds_players[? k];
+	  var delete_player = true
+	  /* Use k, v here */
+		for(var i = 0; array_length(playersarray) > i; i++){
+			var playerid = struct.state.players[@ i].id
+			if k == playerid delete_player = false
+		}
+	if delete_player{
+		with(obj_player){
+			if idd == k instance_destroy(self)	
+		}
+		ds_map_delete(ds_players,k)	
+	}
+	}
+	
+	#endregion
+	
+	#region bullets
 	
 	var bulletsarray = struct.state.bullets
 	
@@ -45,11 +63,13 @@ if async_load[? "type"] == network_type_data{ // data received
 			var bulletid = struct.state.bullets[@ i].id
 			var bulletx = struct.state.bullets[@ i].position.x
 			var bullety = struct.state.bullets[@ i].position.y
+			//var bulletangle = instance_nearest(bulletx, bullety, obj_player).image_angle
 		
 			if(ds_map_exists(ds_bullets, bulletid)){
 				var obj = ds_bullets[? bulletid]
-				obj.x = bulletx//lerp(bulletx, x, 0.10)
-				obj.y = bullety//lerp(bullety, y, 0.10)
+				obj.xx = bulletx //lerp(bulletx, x, 0.25)
+				obj.yy = bullety //lerp(bullety, y, 0.25)
+				//obj.image_angle = bulletangle
 			}else{
 				var obj = instance_create_depth(bulletx,bullety,0,obj_bullet)
 				obj.idd = bulletid
@@ -75,9 +95,12 @@ if async_load[? "type"] == network_type_data{ // data received
 	}
 	}
 	
-
+	#endregion
 	
 
 		
+}
+else{
+	global.connectedANDreceiving = false
 }
 

@@ -7,7 +7,9 @@ global.connectedTOroom = false
 
 // Random variables
 tryConnectroom = false
-roomId = "2k571e3pkbd7e"
+tryCreateroom = false
+joinCreatedroom = false
+roomId = ""
 
 // Buffer
 buffer = buffer_create(32, buffer_grow, 1)
@@ -20,12 +22,14 @@ ping = 0;
 appId = "e2d8571eb89af72f2abbe909def5f19bc4dad0cd475cce5f5b6e9018017d1f1c"
 
 token = ""
+yourplayerId = ""
 
 // Socket creation and connect to the server
 tcp_socket = network_create_socket(network_socket_ws)
 connect = -1
 
 get_token = http_request("https://"+ip+"/"+appId+"/login/anonymous", "POST", async_load, "")
+create_id = "" // http_request("https://"+ip+"/"+appId+"/create", "POST", async_load, "")
 
 // timer
 timer = 0

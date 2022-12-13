@@ -3,7 +3,11 @@
 
 tobedestroyed = true
 
+//image_xscale = 1.2
+//image_yscale = 1.2
 
+xx = x
+yy = y
 
 
 
