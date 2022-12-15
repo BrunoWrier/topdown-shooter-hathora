@@ -63,6 +63,18 @@ if idd == obj_client.yourplayerId{ // player movements
 	
 	#endregion
 	
+	#region ping
+	
+	current_mytime = unix_timestamp()
+	structPING = {
+	"type": ClientMessageType.Ping,
+	"id": current_mytime
+	}
+	
+	network_sendplayerupdate(structPING)
+	
+	#endregion
+	
 	
 }
 

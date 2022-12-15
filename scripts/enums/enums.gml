@@ -5,7 +5,8 @@
 enum ClientMessageType{
 	SetDirection,
 	SetAngle,
-	Shoot
+	Shoot,
+	Ping
 }
 
 // Direction

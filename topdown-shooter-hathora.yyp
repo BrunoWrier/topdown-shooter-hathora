@@ -10,6 +10,7 @@
     {"id":{"name":"spr_copyid","path":"sprites/spr_copyid/spr_copyid.yy",},"order":4,},
     {"id":{"name":"spr_exit","path":"sprites/spr_exit/spr_exit.yy",},"order":5,},
     {"id":{"name":"obj_mouse","path":"objects/obj_mouse/obj_mouse.yy",},"order":6,},
+    {"id":{"name":"ping","path":"scripts/ping/ping.yy",},"order":2,},
     {"id":{"name":"joingame","path":"objects/joingame/joingame.yy",},"order":2,},
     {"id":{"name":"obj_player","path":"objects/obj_player/obj_player.yy",},"order":1,},
     {"id":{"name":"obj_menu","path":"objects/obj_menu/obj_menu.yy",},"order":5,},
@@ -22,6 +23,7 @@
     {"id":{"name":"spr_tileset","path":"sprites/spr_tileset/spr_tileset.yy",},"order":1,},
     {"id":{"name":"gamefont","path":"fonts/gamefont/gamefont.yy",},"order":0,},
     {"id":{"name":"creategame","path":"objects/creategame/creategame.yy",},"order":0,},
+    {"id":{"name":"obj_mapdrawcontrol","path":"objects/obj_mapdrawcontrol/obj_mapdrawcontrol.yy",},"order":10,},
     {"id":{"name":"spr_roomidinput","path":"sprites/spr_roomidinput/spr_roomidinput.yy",},"order":3,},
     {"id":{"name":"idinput","path":"objects/idinput/idinput.yy",},"order":1,},
     {"id":{"name":"spr_menubackground","path":"sprites/spr_menubackground/spr_menubackground.yy",},"order":1,},
@@ -79,6 +81,6 @@
     {"resourceType":"GMIncludedFile","resourceVersion":"1.0","name":"SpaceGrotesk-Regular.ttf","CopyToMask":-1,"filePath":"datafiles",},
   ],
   "MetaData": {
-    "IDEVersion": "2022.11.0.54",
+    "IDEVersion": "2022.11.1.56",
   },
 }

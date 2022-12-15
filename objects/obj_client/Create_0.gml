@@ -24,12 +24,18 @@ appId = "e2d8571eb89af72f2abbe909def5f19bc4dad0cd475cce5f5b6e9018017d1f1c"
 token = ""
 yourplayerId = ""
 
+// ping
+
+current_mytime = unix_timestamp()
+received_mytime = 0
+my_ping = 0
+
 // Socket creation and connect to the server
 tcp_socket = network_create_socket(network_socket_ws)
 connect = -1
 
 get_token = http_request("https://"+ip+"/"+appId+"/login/anonymous", "POST", async_load, "")
-create_id = "" // http_request("https://"+ip+"/"+appId+"/create", "POST", async_load, "")
+create_id = ""
 
 // timer
 timer = 0

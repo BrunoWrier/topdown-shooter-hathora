@@ -10,7 +10,9 @@ if async_load[? "type"] == network_type_data{ // data received
 	var bufferpacket = buffer_read(packet, buffer_string)
 	
 	var struct = json_parse(bufferpacket)
-
+	
+	
+	if struct.type == 0{
 	#region players
 	
 	var playersarray = struct.state.players
@@ -96,7 +98,11 @@ if async_load[? "type"] == network_type_data{ // data received
 	}
 	
 	#endregion
-	
+	}
+	else if struct.type == 1{
+		// get ping
+		received_mytime = struct.id
+	}
 
 		
 }
