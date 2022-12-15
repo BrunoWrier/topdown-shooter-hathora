@@ -24,6 +24,8 @@ if tryConnectroom{
 	timer += 1
 	
 	if connect != -1 && timer >= 40{
+		current_mytime = 0
+		
 		buffer_seek(buffer, buffer_seek_start, 0)
 	
 		buffer_write(buffer, buffer_string, json_stringify(structDATA))
@@ -52,8 +54,4 @@ if token != "" && yourplayerId == ""{
 	yourplayerId = yourplayerId[$ "id"]
 	show_debug_message(yourplayerId)
 }
-
-current_mytime = unix_timestamp()
-if received_mytime != 0 my_ping = current_mytime - received_mytime
-if my_ping != 0 show_debug_message(my_ping)
 

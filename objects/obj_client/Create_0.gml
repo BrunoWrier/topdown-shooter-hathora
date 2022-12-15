@@ -26,7 +26,7 @@ yourplayerId = ""
 
 // ping
 
-current_mytime = unix_timestamp()
+current_mytime = 0 // unix_timestamp()
 received_mytime = 0
 my_ping = 0
 
