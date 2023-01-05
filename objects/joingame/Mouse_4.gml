@@ -1,11 +1,12 @@
 /// @description Insert description here
 // You can write your code in this editor
 
-image_index = 1
-
-if global.connectedTOroom == false{
-	obj_client.tryConnectroom = true
+if instance_exists(obj_client){
+	if global.connectedTOroom == false && obj_client.token != ""{
+		obj_client.tryConnectroom = true
+	}
 }
+image_index = 1
 
 
 

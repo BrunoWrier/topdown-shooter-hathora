@@ -11,7 +11,12 @@ y = yDifference + cam_y
 
 
 
-
+if place_meeting(x, y, obj_mouse) && mouse_check_button_pressed(mb_left){
+	with obj_client{
+		network_destroy(tcp_socket)
+		instance_destroy(self)
+	}	
+}
 
 
 

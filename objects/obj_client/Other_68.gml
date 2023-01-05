@@ -2,15 +2,24 @@
 // You can write your code in this editor
 
 
+if async_load[? "type"] == network_type_disconnect{
+	room_goto(Menu)	
+}
+
 if async_load[? "type"] == network_type_data{ // data received
+	
 	
 	global.connectedANDreceiving = true
 	
+
 	var packet = async_load[? "buffer"];
 	var bufferpacket = buffer_read(packet, buffer_string)
-	
+	buffer_exist_confirm = bufferpacket
 	var struct = json_parse(bufferpacket)
-	
+	if room != Room1{
+		room_goto(Room1)
+	}
+	else{
 	
 	if struct.type == 0{
 	#region players
@@ -103,10 +112,11 @@ if async_load[? "type"] == network_type_data{ // data received
 		// get ping
 		received_mytime = struct.id
 	}
-
+	}
 		
 }
 else{
 	global.connectedANDreceiving = false
 }
+
 

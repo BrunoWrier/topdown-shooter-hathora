@@ -44,5 +44,7 @@ timer = 0
 ds_players = ds_map_create()
 ds_bullets = ds_map_create()
 
+buffer_exist_confirm = ""
 
 
+time_out = 0

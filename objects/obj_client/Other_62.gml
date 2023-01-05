@@ -4,7 +4,7 @@
 // Getting token
 
 if async_load[? "id"] == get_token{
-	show_debug_message("got token= " + async_load[? "result"])
+	// show_debug_message("got token= " + async_load[? "result"])
 	var tokenstruct = json_parse(async_load[? "result"])
 	token = tokenstruct[$"token"]
 	show_debug_message(token)

@@ -35,7 +35,7 @@ if tryConnectroom{
 		network_send_raw(tcp_socket, buffer, string_byte_length(json_stringify(structDATA)), network_send_binary)//, buffer_tell(buffer))
 		tryConnectroom = false
 		
-		room_goto(Room1)
+		// room_goto(Room1)
 	}
 }
 
@@ -55,3 +55,12 @@ if token != "" && yourplayerId == ""{
 	show_debug_message(yourplayerId)
 }
 
+if connect != -1{
+	if time_out < 180 time_out += 1
+
+	if room != Room1 && time_out >= 180{
+		network_destroy(tcp_socket)
+		show_message_async("Unable to connect to the room! Maybe the room doesn't exist?")
+		instance_destroy(self)
+	}
+}
