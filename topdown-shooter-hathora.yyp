@@ -31,6 +31,7 @@
     {"id":{"name":"spr_player","path":"sprites/spr_player/spr_player.yy",},"order":0,},
     {"id":{"name":"network_sendplayerupdate","path":"scripts/network_sendplayerupdate/network_sendplayerupdate.yy",},"order":1,},
     {"id":{"name":"ping_medianscript","path":"scripts/ping_medianscript/ping_medianscript.yy",},"order":3,},
+    {"id":{"name":"obj_ping","path":"objects/obj_ping/obj_ping.yy",},"order":10,},
     {"id":{"name":"bbackground","path":"objects/bbackground/bbackground.yy",},"order":3,},
     {"id":{"name":"obj_copyid","path":"objects/obj_copyid/obj_copyid.yy",},"order":8,},
     {"id":{"name":"spr_roomjoin","path":"sprites/spr_roomjoin/spr_roomjoin.yy",},"order":4,},
